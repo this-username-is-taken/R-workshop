@@ -1,0 +1,69 @@
+---
+title: "Foundation"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Subsetting Vector
+
+What can you put in []?
+
+1. Logical
+2. Positive Integer
+3. Negative Integer
+4. Zero
+5. Character
+6. Nothing
+
+`drop = FALSE` returns data.frame instead of matrix.
+
+```{r}
+x <- c(1.5, -2.3, 10, 9.3, 1.42, 0)
+
+# 1. Logical: keep TRUEs
+x[x > 4]
+
+# 4. Zero: drops all
+x[0]
+
+# 6. Nothing gives you everything
+x[]
+mtcars[1:5, ]
+mtcars[, c("vs", "am")]
+```
+
+## Object Size
+
+`object.size` is not a reliable source of information. Use `pryr::object_size()` instead.
+
+```{r}
+x <- rnorm(1e6)
+pryr::object_size(x)
+
+y <- list(x, x, x)
+pryr::object_size(y)
+pryr::object_size(x, y)
+
+# What if we change a value? R copies on modify.
+y[[1]][[1]] <- 1
+pryr::object_size(y)
+```
+
+## RStudio Shortcuts
+
+#### Global
+
+- `Alt + Shift + K` shows all keyboard shortcuts.
+- `Cmd + Shift + F10` restart R session.
+
+#### Console
+
+- `Tab` autocompletes.
+- `Cmd + Up Arrow` shows you command history.
+
+#### Editor
+
+- `Cmd + Enter` executes current line that the cursor is on.
