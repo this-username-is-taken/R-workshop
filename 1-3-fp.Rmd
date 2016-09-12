@@ -1,0 +1,43 @@
+---
+title: "Functional Programming"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+#### Difference between `[`, `[[`, `$`
+
+```{r}
+x <- c(1, 2, 3)
+y <- list(a = 1, b = 2, c = 3)
+# `[` returns a subset of the object
+is.list(x[1])
+is.list(y[1])
+# `[[` returns an item in the object
+is.list(x[[1]])
+is.list(y[[1]])
+# `$` is a shortcut for `[[`
+y[['b']]
+y$b
+```
+
+#### `seq_along`
+
+Returns a sequence with the length of the input.
+
+```{r Print}
+x <- list()
+
+# Bad
+# for (i in 1:length(x))
+#   print(x[[i]])
+# Error in x[[i]] : subscript out of bounds
+
+# Good
+for (i in seq_along(x))
+  print(x[[i]])
+```
